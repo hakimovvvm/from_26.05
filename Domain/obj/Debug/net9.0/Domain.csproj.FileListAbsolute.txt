@@ -1,0 +1,22 @@
+C:\Users\admin\OneDrive\Desktop\C# 3month\WebAPI\class-26-05\Domain\bin\Debug\net9.0\Domain.deps.json
+C:\Users\admin\OneDrive\Desktop\C# 3month\WebAPI\class-26-05\Domain\bin\Debug\net9.0\Domain.dll
+C:\Users\admin\OneDrive\Desktop\C# 3month\WebAPI\class-26-05\Domain\bin\Debug\net9.0\Domain.pdb
+C:\Users\admin\OneDrive\Desktop\C# 3month\WebAPI\class-26-05\Domain\obj\Debug\net9.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\OneDrive\Desktop\C# 3month\WebAPI\class-26-05\Domain\obj\Debug\net9.0\Domain.AssemblyInfoInputs.cache
+C:\Users\admin\OneDrive\Desktop\C# 3month\WebAPI\class-26-05\Domain\obj\Debug\net9.0\Domain.AssemblyInfo.cs
+C:\Users\admin\OneDrive\Desktop\C# 3month\WebAPI\class-26-05\Domain\obj\Debug\net9.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\admin\OneDrive\Desktop\C# 3month\WebAPI\class-26-05\Domain\obj\Debug\net9.0\Domain.dll
+C:\Users\admin\OneDrive\Desktop\C# 3month\WebAPI\class-26-05\Domain\obj\Debug\net9.0\refint\Domain.dll
+C:\Users\admin\OneDrive\Desktop\C# 3month\WebAPI\class-26-05\Domain\obj\Debug\net9.0\Domain.pdb
+C:\Users\admin\OneDrive\Desktop\C# 3month\WebAPI\class-26-05\Domain\obj\Debug\net9.0\ref\Domain.dll
+C:\Users\M A G A\Desktop\from_26.05\Domain\bin\Debug\net9.0\Domain.deps.json
+C:\Users\M A G A\Desktop\from_26.05\Domain\bin\Debug\net9.0\Domain.dll
+C:\Users\M A G A\Desktop\from_26.05\Domain\bin\Debug\net9.0\Domain.pdb
+C:\Users\M A G A\Desktop\from_26.05\Domain\obj\Debug\net9.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\M A G A\Desktop\from_26.05\Domain\obj\Debug\net9.0\Domain.AssemblyInfoInputs.cache
+C:\Users\M A G A\Desktop\from_26.05\Domain\obj\Debug\net9.0\Domain.AssemblyInfo.cs
+C:\Users\M A G A\Desktop\from_26.05\Domain\obj\Debug\net9.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\M A G A\Desktop\from_26.05\Domain\obj\Debug\net9.0\Domain.dll
+C:\Users\M A G A\Desktop\from_26.05\Domain\obj\Debug\net9.0\refint\Domain.dll
+C:\Users\M A G A\Desktop\from_26.05\Domain\obj\Debug\net9.0\Domain.pdb
+C:\Users\M A G A\Desktop\from_26.05\Domain\obj\Debug\net9.0\ref\Domain.dll
