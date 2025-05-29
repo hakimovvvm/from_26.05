@@ -1,5 +1,6 @@
 using Domain.ApiResponse;
 using Domain.DTOs;
+using Domain.DTOs.StudentDTOs;
 using Domain.Entites;
 using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,25 +12,25 @@ namespace WebApi.Controllers;
 public class StudentController(IStudentService stServ) : ControllerBase
 {
     [HttpGet]
-    public async Task<Response<List<StudentDTO>>> GetAllStudentsAsync()
+    public async Task<Response<List<GetStudentDTO>>> GetAllStudentsAsync()
     {
         return await stServ.GetStudentsAsync();
     }
 
     [HttpGet("Get by id")]
-    public async Task<Response<StudentDTO?>> GetStudentByIdAsync(int id)
+    public async Task<Response<GetStudentDTO>> GetStudentByIdAsync(int id)
     {
         return await stServ.GetStudentAsync(id);
     }
 
     [HttpPost]
-    public async Task<Response<string>> CreateStudentAsync(StudentDTO student)
+    public async Task<Response<string>> CreateStudentAsync(CreateStudentDTO student)
     {
         return await stServ.CreateStudentAsync(student);
     }
 
     [HttpPut]
-    public async Task<Response<string>> UpdateStudentAsync(StudentDTO student)
+    public async Task<Response<string>> UpdateStudentAsync(UpdateStudentDTO student)
     {
         return await stServ.UpdateStudentAsync(student);
     }

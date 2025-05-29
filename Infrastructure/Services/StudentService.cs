@@ -1,6 +1,7 @@
 using System.Net;
 using Domain.ApiResponse;
 using Domain.DTOs;
+using Domain.DTOs.StudentDTOs;
 using Domain.Entites;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
@@ -10,7 +11,7 @@ namespace Infrastructure.Services;
 
 public class StudentService(DataContext context) : IStudentService
 {
-    public async Task<Response<string>> CreateStudentAsync(StudentDTO student)
+    public async Task<Response<string>> CreateStudentAsync(CreateStudentDTO student)
     {
         var newSt = new Student
         {
@@ -23,7 +24,7 @@ public class StudentService(DataContext context) : IStudentService
         var res = await context.SaveChangesAsync();
         return res == 0
         ? new Response<string>("Some thing went wrong", HttpStatusCode.InternalServerError)
-        : new Response<string>(null, "Success");
+        : new Response<string>(null!, "Success");
     }
 
     public async Task<Response<string>> DeleteStudentAsync(int id)
@@ -38,18 +39,18 @@ public class StudentService(DataContext context) : IStudentService
         var res = await context.SaveChangesAsync();
         return res == 0
         ? new Response<string>("Some thing went wrong", HttpStatusCode.InternalServerError)
-        : new Response<string>(null, "Success");
+        : new Response<string>(null!, "Success");
     }
 
-    public async Task<Response<StudentDTO?>> GetStudentAsync(int id)
+    public async Task<Response<GetStudentDTO>> GetStudentAsync(int id)
     {
         var student = await context.Students.FindAsync(id);
         if (student == null)
         {
-            return new Response<StudentDTO?>("student not found", HttpStatusCode.NotFound);
+            return new Response<GetStudentDTO>("student not found", HttpStatusCode.NotFound);
         }
 
-        var result = new StudentDTO
+        var result = new GetStudentDTO
         {
             Id = student.Id,
             FirstName = student.FirstName,
@@ -58,14 +59,14 @@ public class StudentService(DataContext context) : IStudentService
             Status = student.Status
         };
         return result == null
-        ? new Response<StudentDTO?>("Something went wrong", HttpStatusCode.InternalServerError)
-        : new Response<StudentDTO?>(result, "success");
+        ? new Response<GetStudentDTO>("Something went wrong", HttpStatusCode.InternalServerError)
+        : new Response<GetStudentDTO>(result, "success");
     }
 
-    public async Task<Response<List<StudentDTO>>> GetStudentsAsync()
+    public async Task<Response<List<GetStudentDTO>>> GetStudentsAsync()
     {
         var students = await context.Students.ToListAsync();
-        var result = students.Select(st => new StudentDTO
+        var result = students.Select(st => new GetStudentDTO
         {
             Id = st.Id,
             FirstName = st.FirstName,
@@ -74,11 +75,11 @@ public class StudentService(DataContext context) : IStudentService
             Status = st.Status
         }).ToList();
         return result == null
-        ? new Response<List<StudentDTO>>("Something went wrong", HttpStatusCode.InternalServerError)
-        : new Response<List<StudentDTO>>(result, "success");
+        ? new Response<List<GetStudentDTO>>("Something went wrong", HttpStatusCode.InternalServerError)
+        : new Response<List<GetStudentDTO>>(result, "success");
     }
 
-    public async Task<Response<string>> UpdateStudentAsync(StudentDTO student)
+    public async Task<Response<string>> UpdateStudentAsync(UpdateStudentDTO student)
     {
         var st = await context.Students.FindAsync(student.Id);
         if (st == null)
@@ -94,6 +95,6 @@ public class StudentService(DataContext context) : IStudentService
         var res = await context.SaveChangesAsync();
         return res == null
         ? new Response<string>("Something went wrong", HttpStatusCode.InternalServerError)
-        : new Response<string>(null, "success");
+        : new Response<string>(null!, "success");
     }
 }

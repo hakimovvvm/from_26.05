@@ -28,3 +28,4 @@ C:\Users\M A G A\Desktop\from_26.05\Infrastructure\obj\Debug\net9.0\Infrastructu
 C:\Users\M A G A\Desktop\from_26.05\Infrastructure\obj\Debug\net9.0\refint\Infrastructure.dll
 C:\Users\M A G A\Desktop\from_26.05\Infrastructure\obj\Debug\net9.0\Infrastructure.pdb
 C:\Users\M A G A\Desktop\from_26.05\Infrastructure\obj\Debug\net9.0\ref\Infrastructure.dll
+C:\Users\M A G A\Desktop\from_26.05\Infrastructure\obj\Debug\net9.0\Infrastructure.sourcelink.json

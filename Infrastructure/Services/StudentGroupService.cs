@@ -1,6 +1,7 @@
 using System.Net;
 using Domain.ApiResponse;
 using Domain.DTOs;
+using Domain.DTOs.StudentGroupDTOs;
 using Domain.Entites;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
@@ -10,7 +11,7 @@ namespace Infrastructure.Services;
 
 public class StudentGroupService(DataContext context) : IStudentGroupService
 {
-    public async Task<Response<string>> CreateStudentGroupAsync(StudentGroupDTO studentGroup)
+    public async Task<Response<string>> CreateStudentGroupAsync(CreateStudentGroupDTO studentGroup)
     {
         var newSt = new StudentGroup
         {
@@ -22,7 +23,7 @@ public class StudentGroupService(DataContext context) : IStudentGroupService
         var res = await context.SaveChangesAsync();
         return res == 0
         ? new Response<string>("Some thing went wrong", HttpStatusCode.InternalServerError)
-        : new Response<string>(null, "Success");
+        : new Response<string>(null!, "Success");
     }
 
     public async Task<Response<string>> DeleteStudentGroupAsync(int studentId, int groupId)
@@ -37,41 +38,41 @@ public class StudentGroupService(DataContext context) : IStudentGroupService
         var res = await context.SaveChangesAsync();
         return res == 0
         ? new Response<string>("Some thing went wrong", HttpStatusCode.InternalServerError)
-        : new Response<string>(null, "Success");
+        : new Response<string>(null!, "Success");
     }
 
-    public async Task<Response<StudentGroupDTO?>> GetStudentGroupAsync(int studentId, int groupId)
+    public async Task<Response<GetStudentGroupDTO>> GetStudentGroupAsync(int studentId, int groupId)
     {
         var studentGroup = await context.StudentGroups.FindAsync(studentId, groupId);
         if (studentGroup == null)
         {
-            return new Response<StudentGroupDTO?>("studentGroup not found", HttpStatusCode.NotFound);
+            return new Response<GetStudentGroupDTO>("studentGroup not found", HttpStatusCode.NotFound);
         }
 
-        var result = new StudentGroupDTO
+        var result = new GetStudentGroupDTO
         {
             StudentId = studentGroup.StudentId,
             GroupId = studentGroup.GroupId
         };
         return result == null
-        ? new Response<StudentGroupDTO?>("Something went wrong", HttpStatusCode.InternalServerError)
-        : new Response<StudentGroupDTO?>(result, "success");
+        ? new Response<GetStudentGroupDTO>("Something went wrong", HttpStatusCode.InternalServerError)
+        : new Response<GetStudentGroupDTO>(result, "success");
     }
 
-    public async Task<Response<List<StudentGroupDTO>>> GetStudentGroupsAsync()
+    public async Task<Response<List<GetStudentGroupDTO>>> GetStudentGroupsAsync()
     {
         var studentGroups = await context.StudentGroups.ToListAsync();
-        var result = studentGroups.Select(stGr => new StudentGroupDTO
+        var result = studentGroups.Select(stGr => new GetStudentGroupDTO
         {
             StudentId = stGr.StudentId,
             GroupId = stGr.GroupId
         }).ToList();
         return result == null
-        ? new Response<List<StudentGroupDTO>>("Something went wrong", HttpStatusCode.InternalServerError)
-        : new Response<List<StudentGroupDTO>>(result, "success");
+        ? new Response<List<GetStudentGroupDTO>>("Something went wrong", HttpStatusCode.InternalServerError)
+        : new Response<List<GetStudentGroupDTO>>(result, "success");
     }
 
-    public async Task<Response<string>> UpdateStudentGroupAsync(StudentGroupDTO studentGroup)
+    public async Task<Response<string>> UpdateStudentGroupAsync(UpdateStudentGroupDTO studentGroup)
     {
         var stGr = await context.StudentGroups.FindAsync(studentGroup.StudentId, studentGroup.GroupId);
         if (stGr == null)
@@ -85,6 +86,6 @@ public class StudentGroupService(DataContext context) : IStudentGroupService
         var res = await context.SaveChangesAsync();
         return res == null
         ? new Response<string>("Something went wrong", HttpStatusCode.InternalServerError)
-        : new Response<string>(null, "success");
+        : new Response<string>(null!, "success");
     }
 }

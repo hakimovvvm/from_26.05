@@ -1,5 +1,6 @@
 using Domain.ApiResponse;
 using Domain.DTOs;
+using Domain.DTOs.AddressDTOs;
 using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,25 +11,25 @@ namespace WebApi.Controllers;
 public class AddressController(IAddressService adServ) : ControllerBase
 {
     [HttpGet]
-    public async Task<Response<List<AddressDTO>>> GetAllAddresssAsync()
+    public async Task<Response<List<GetAddressDTO>>> GetAllAddresssAsync()
     {
         return await adServ.GetAddresssAsync();
     }
 
     [HttpGet("Get by id")]
-    public async Task<Response<AddressDTO?>> GetAddressByIdAsync(int id)
+    public async Task<Response<GetAddressDTO>> GetAddressByIdAsync(int id)
     {
         return await adServ.GetAddressAsync(id);
     }
 
     [HttpPost]
-    public async Task<Response<string>> CreateAddressAsync(AddressDTO address)
+    public async Task<Response<string>> CreateAddressAsync(CreateAddressDTO address)
     {
         return await adServ.CreateAddressAsync(address);
     }
 
     [HttpPut]
-    public async Task<Response<string>> UpdateAddressAsync(AddressDTO address)
+    public async Task<Response<string>> UpdateAddressAsync(UpdateAddressDTO address)
     {
         return await adServ.UpdateAddressAsync(address);
     }

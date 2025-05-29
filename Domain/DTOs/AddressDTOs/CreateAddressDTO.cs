@@ -1,8 +1,7 @@
-namespace Domain.DTOs;
+namespace Domain.DTOs.AddressDTOs;
 
-public class AddressDTO
+public class CreateAddressDTO
 {
-    public int Id { get; set; }
     public string City { get; set; }
     public string Street { get; set; }
     public int StudentId { get; set; }

@@ -274,3 +274,4 @@ C:\Users\M A G A\Desktop\from_26.05\WebApi\obj\Debug\net9.0\refint\WebApi.dll
 C:\Users\M A G A\Desktop\from_26.05\WebApi\obj\Debug\net9.0\WebApi.pdb
 C:\Users\M A G A\Desktop\from_26.05\WebApi\obj\Debug\net9.0\WebApi.genruntimeconfig.cache
 C:\Users\M A G A\Desktop\from_26.05\WebApi\obj\Debug\net9.0\ref\WebApi.dll
+C:\Users\M A G A\Desktop\from_26.05\WebApi\obj\Debug\net9.0\WebApi.sourcelink.json

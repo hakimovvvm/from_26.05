@@ -1,6 +1,7 @@
 using System.Net;
 using Domain.ApiResponse;
 using Domain.DTOs;
+using Domain.DTOs.AddressDTOs;
 using Domain.Entites;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
@@ -10,7 +11,7 @@ namespace Infrastructure.Services;
 
 public class AddressService(DataContext context) : IAddressService
 {
-    public async Task<Response<string>> CreateAddressAsync(AddressDTO address)
+    public async Task<Response<string>> CreateAddressAsync(CreateAddressDTO address)
     {
         var newSt = new Address
         {
@@ -22,7 +23,7 @@ public class AddressService(DataContext context) : IAddressService
         var res = await context.SaveChangesAsync();
         return res == 0
         ? new Response<string>("Some thing went wrong", HttpStatusCode.InternalServerError)
-        : new Response<string>(null, "Success");
+        : new Response<string>(null!, "Success");
     }
 
     public async Task<Response<string>> DeleteAddressAsync(int id)
@@ -37,18 +38,18 @@ public class AddressService(DataContext context) : IAddressService
         var res = await context.SaveChangesAsync();
         return res == 0
         ? new Response<string>("Some thing went wrong", HttpStatusCode.InternalServerError)
-        : new Response<string>(null, "Success");
+        : new Response<string>(null!, "Success");
     }
 
-    public async Task<Response<AddressDTO?>> GetAddressAsync(int id)
+    public async Task<Response<GetAddressDTO>> GetAddressAsync(int id)
     {
         var address = await context.Addresss.FindAsync(id);
         if (address == null)
         {
-            return new Response<AddressDTO?>("address not found", HttpStatusCode.NotFound);
+            return new Response<GetAddressDTO>("address not found", HttpStatusCode.NotFound);
         }
 
-        var result = new AddressDTO
+        var result = new GetAddressDTO
         {
             Id = address.Id,
             City = address.City,
@@ -56,27 +57,27 @@ public class AddressService(DataContext context) : IAddressService
             StudentId = address.StudentId
         };
         return result == null
-        ? new Response<AddressDTO?>("Something went wrong", HttpStatusCode.InternalServerError)
-        : new Response<AddressDTO?>(result, "success");
+        ? new Response<GetAddressDTO>("Something went wrong", HttpStatusCode.InternalServerError)
+        : new Response<GetAddressDTO>(result, "success");
     }
 
-    public async Task<Response<List<AddressDTO>>> GetAddresssAsync()
+    public async Task<Response<List<GetAddressDTO>>> GetAddresssAsync()
     {
         var addresss = await context.Addresss.ToListAsync();
-        var result = addresss.Select(ad => new AddressDTO
+        var result = addresss.Select(ad => new GetAddressDTO
         {
             Id = ad.Id,
             City = ad.City,
             Street = ad.Street,
             StudentId = ad.StudentId
-            
+
         }).ToList();
         return result == null
-        ? new Response<List<AddressDTO>>("Something went wrong", HttpStatusCode.InternalServerError)
-        : new Response<List<AddressDTO>>(result, "success");
+        ? new Response<List<GetAddressDTO>>("Something went wrong", HttpStatusCode.InternalServerError)
+        : new Response<List<GetAddressDTO>>(result, "success");
     }
 
-    public async Task<Response<string>> UpdateAddressAsync(AddressDTO address)
+    public async Task<Response<string>> UpdateAddressAsync(UpdateAddressDTO address)
     {
         var ad = await context.Addresss.FindAsync(address.Id);
         if (ad == null)
@@ -89,8 +90,8 @@ public class AddressService(DataContext context) : IAddressService
         ad.StudentId = address.StudentId;
 
         var res = await context.SaveChangesAsync();
-        return res == null
+        return res <= 0
         ? new Response<string>("Something went wrong", HttpStatusCode.InternalServerError)
-        : new Response<string>(null, "success");
+        : new Response<string>(null!, "success");
     }
 }
